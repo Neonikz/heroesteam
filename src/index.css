@@ -12,6 +12,16 @@ body{
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
+.form__button{
+  background-color: #fff;
+  color: rgb(110, 0, 161);
+  border: 1px solid rgb(110, 0, 161);
+}
+.form__button:hover{
+  transition: background-color .4s ease;
+  background-color: rgb(110, 0, 161);
+  color: #fff
+}
