@@ -30,13 +30,7 @@ export const LoginScreen = () => {
         }
         setError( false );
         // dispatch( startLoginEmailPassword( email , password ) );
-
-        console.log(formValues);
     }
-
-    // const handleGoogleLogin = () => {
-    //     dispatch( startGoogleLogin() );
-    // }
 
     return (
         <div className="bg-white m-5 p-5 border border-1 border-dark">
@@ -76,7 +70,7 @@ export const LoginScreen = () => {
                         <div className="d-grid gap-2 col-6 mx-auto mt-4">
                             <button
                                 type="submit"
-                                className="btn btn-primary"
+                                className="btn form__button"
                                 // disabled={ loading }
                             >
                                 Enviar

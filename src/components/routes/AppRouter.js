@@ -11,14 +11,14 @@ import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
 
-    const [isLoggedIn, setOnline] = useState(false);
+    const [isLoggedIn, setOnline] = useState(true);
 
     return (
         <Router>
             <div>
                 <Switch>
-                    <PublicRoute isAuthenticated={isLoggedIn} path="/auth" component={ AuthRouter } />
-                    <PrivateRoute exact isAuthenticated={isLoggedIn} path="/" component={ DashboardRoutes } />
+                    <PublicRoute exact isAuthenticated={isLoggedIn} path="/auth" component={ AuthRouter } />
+                    <PrivateRoute  isAuthenticated={isLoggedIn} path="/" component={ DashboardRoutes } />
                     <Redirect to="/auth/login" />
                 </Switch>
             </div>
