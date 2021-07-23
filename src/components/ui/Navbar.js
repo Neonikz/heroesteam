@@ -1,20 +1,22 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+import { types } from '../../types/types';
 
 export const Navbar = () => {
 
+    const dispatch = useDispatch();
 
-    // const { user:{name}, dispatch } = useContext(AuthContext);
-    // const history = useHistory();
+    const history = useHistory();
     
-    // const handleLogout = () => {
-    //     dispatch({
-    //         type: types.logout,
-    //     });
+    //Funcion para deslogear
+    const handleLogout = () => {
+        dispatch({
+            type: types.authLogout,
+        });
         
-    //     history.replace('/login');
-        
-    // }
+        history.replace('/auth/login');   
+    }
 
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -57,7 +59,7 @@ export const Navbar = () => {
 
                     <button 
                         className="btn nav-item nav-link"
-                        // onClick={ handleLogout }
+                        onClick={ handleLogout }
                     >
                         SALIR
                     </button>

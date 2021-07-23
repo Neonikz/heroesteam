@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { Error } from '../error/Error';
+import { startLogin } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
 
 
 export const LoginScreen = () => {
 
-    // const dispatch = useDispatch();
-
-    // const { loading } = useSelector( state => state.ui );
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     //Manejo del formulario
     const [ formValues, handleInputChange ] = useForm({
-        email: '',
-        password: '',
+        email: 'challenge@alkemy.org',
+        password: 'react',
     });
     const { email, password } = formValues;
 
@@ -29,7 +31,8 @@ export const LoginScreen = () => {
             return;
         }
         setError( false );
-        // dispatch( startLoginEmailPassword( email , password ) );
+        dispatch( startLogin( email , password ) );
+        history.replace('/');
     }
 
     return (
@@ -71,7 +74,6 @@ export const LoginScreen = () => {
                             <button
                                 type="submit"
                                 className="btn form__button"
-                                // disabled={ loading }
                             >
                                 Enviar
                             </button>
