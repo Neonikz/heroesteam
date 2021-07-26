@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { getHeroByName } from '../../helpers/getHeroByName';
-import { HeroCard } from './HeroCard';
+import { HeroCardSearch } from './HeroCardSearch';
 
 export const SearchScreen = ({ history }) => {
 
@@ -77,7 +77,7 @@ export const SearchScreen = ({ history }) => {
 
                     {
                         herosFiltered.map( hero => (
-                            <HeroCard
+                            <HeroCardSearch
                                 key={hero.id}
                                 {...hero}
                                 
