@@ -1,17 +1,15 @@
 import React from 'react';
-import { getHeros } from '../../helpers/getHeros';
+import { heroes } from '../../data/heroes';
 import { HeroCard } from './HeroCard';
 
 
 export const HomeScreen = () => {
 
-    const hero = getHeros(1);
-    console.log(hero);
-    let heroList = [];
-    for (let i; i <= 6; i++) {
-        let heroList = [ ...heroList, getHeros(i) ];
+    let heros = [];
+    for (let i = 0; i < 6; i++) {
+        heros = [...heros, heroes[i] ]
+        
     }
-    console.log(heroList);
 
     return (
         <div className="container">
@@ -23,9 +21,9 @@ export const HomeScreen = () => {
             </div>
 
             <div className="row">
-                <div className="col d-flex flex-wrap mt-5 justify-content-center animate__animated animate__fadeInRight">
+                <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
                     {
-                        heroList.map( hero => (
+                        heros.map( hero => (
                             <HeroCard 
                                 key={hero}
                                 { ...hero }

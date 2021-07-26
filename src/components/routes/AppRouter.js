@@ -6,7 +6,7 @@ import {
   Redirect  
 } from "react-router-dom";
 import { login } from '../../actions/auth';
-import { AuthRouter } from './AuthRouter';
+import { LoginScreen } from '../auth/LoginScreen';
 import { DashboardRoutes } from './DashboardRoutes';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -14,21 +14,22 @@ import { PublicRoute } from './PublicRoute';
 export const AppRouter = () => {
 
     const dispatch = useDispatch();
-    const { logged } = useSelector( state => state.auth );
-
+    const token = localStorage.getItem('token')
+    
     useEffect(() => {
-        const token = localStorage.getItem('token')
         if(token){
-            dispatch( login )
+            dispatch( login() )
         }
-    }, [dispatch,logged]);
-
+    }, [dispatch,token]);
+    
+    const { logged } = useSelector( state => state.auth );
+    
     return (
         <Router>
             <div>
                 <Switch>
-                    <PublicRoute isAuthenticated={logged} path="/auth/login" component={ AuthRouter } />
-                    <PrivateRoute  isAuthenticated={logged} path="/" component={ DashboardRoutes } />
+                    <PublicRoute exact isAuthenticated={logged} path="/auth/login" component={ LoginScreen } />
+                    <PrivateRoute isAuthenticated={logged} path="/" component={ DashboardRoutes } />
                     <Redirect to="/" />
                 </Switch>
             </div>
