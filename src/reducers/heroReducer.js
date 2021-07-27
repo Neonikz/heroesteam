@@ -15,7 +15,10 @@ export const heroReducer = ( state = initialState, action ) => {
             if(herosTeam.length <= 6){
                 return{
                     ...state,
-                    herosTeam: [ ...herosTeam, heroes.filter(hero=> hero.id === action.payload) ]
+                    herosTeam: [
+                        ...herosTeam, 
+                        heroes.filter(hero=> hero.id === action.payload)
+                    ]
                 }
             }else{
                 return state;
@@ -24,13 +27,14 @@ export const heroReducer = ( state = initialState, action ) => {
         case( types.deleteHero ):
             return{
                 ...state,
-                herosTeam: [ herosTeam.filter(hero=> hero.id !== action.payload)]
+                herosTeam: herosTeam.filter(hero=> hero.id !== action.payload)
             }
 
         case( types.getHeros ):
-            return{
+            return {
                 ...state,
-            }
+                herosTeam: [...herosTeam]
+            };
         default:
             return state;
     }

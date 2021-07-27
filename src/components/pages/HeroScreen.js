@@ -22,8 +22,12 @@ export const HeroScreen = ({ history }) => {
         publisher,
         alter_ego,
         first_appearance,
-        characters
+        characters,
+        appearance,
+        work
     } = hero;
+
+    const { height, weight, eyeColor, hairColor } = appearance; 
     
     const handleReturn = () =>{
 
@@ -53,11 +57,16 @@ export const HeroScreen = ({ history }) => {
                 <h3 className="text-center text-white"> { superhero } </h3>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"> <b> Alter ego: { alter_ego }</b> </li>
-                    <li className="list-group-item"> <b> Publisher: { publisher }</b> </li>
-                    <li className="list-group-item"> <b> First Appearance: { first_appearance }</b> </li>
+                    <li className="list-group-item"> <b> Publicado por: { publisher }</b> </li>
+                    <li className="list-group-item"> <b> Altura: { height[1] }</b> </li>
+                    <li className="list-group-item"> <b> Peso: { weight[1] }</b> </li>
+                    <li className="list-group-item"> <b> Color de ojos: { eyeColor }</b> </li>
+                    <li className="list-group-item"> <b> Color de pelo: { hairColor }</b> </li>
+                    <li className="list-group-item"> <b> Trabajo: { work.occupation }</b> </li>
+                    <li className="list-group-item"> <b> Primera aparicion: { first_appearance }</b> </li>
                 </ul>
 
-                <h5 className="text-center text-white mt-1"> Characters </h5>
+                <h5 className="text-center text-white mt-1"> Personajes </h5>
                 <p className="text-center text-white"> { characters } </p>
 
                 <div className="d-flex justify-content-center">

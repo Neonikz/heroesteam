@@ -6,15 +6,12 @@ import { HeroCard } from './HeroCard';
 
 export const HomeScreen = () => {
 
-    
     const dispatch = useDispatch();
     let { herosTeam } = useSelector( state => state.hero );
-
     useEffect(() => {
-        dispatch(() => getHeros() )
-    }, [dispatch,herosTeam]);
+        dispatch(getHeros())
+    }, [dispatch]);
 
-    console.log(herosTeam[0]);
     return (
         <div className="container">
             <div className="row">
@@ -26,11 +23,11 @@ export const HomeScreen = () => {
 
             <div className="row">
                 <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
-                    {
+                    {   
                         herosTeam.map( hero => (
                             <HeroCard 
                                 key={hero.id}
-                                { ...hero }
+                                { ...hero } 
                             />
                         ))
                     }

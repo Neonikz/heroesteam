@@ -9,6 +9,7 @@ export const HeroCard = ({
     id,
     superhero,
     alter_ego,
+    powerstats
 }) => {
 
     const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export const HeroCard = ({
     const handleDelete = id => {
         dispatch( deleteHero(id) );
     }
+    const {intelligence, strength, speed, durability, power, combat} = powerstats;
 
     return (
         <div className="card m-3 overflow-hidden animate__animated animate__flash" style={ { maxWidth:300} }>
@@ -28,6 +30,13 @@ export const HeroCard = ({
                     <div className="card-body">
                     <h5 className="card-title"> {superhero} </h5>
                     <p className="card-text">{alter_ego}</p>
+                    <p className="card-title">Powerstats:</p>
+                    <p className="card-text">Inteligencia: {intelligence}</p>
+                    <p className="card-text">Fuerza: {strength}</p>
+                    <p className="card-text">Velocidad: {speed}</p>
+                    <p className="card-text">Durabilidad: {durability}</p>
+                    <p className="card-text">Poder: {power}</p>
+                    <p className="card-text">Combate: {combat}</p>
 
                     {/* {
                         ( alter_ego !== characters )
