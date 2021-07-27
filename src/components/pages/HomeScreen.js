@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHeros } from '../../actions/heros';
 import { HeroCard } from './HeroCard';
+import { TeamStats } from './TeamStats';
 
 
 export const HomeScreen = () => {
@@ -11,6 +12,7 @@ export const HomeScreen = () => {
     useEffect(() => {
         dispatch(getHeros())
     }, [dispatch]);
+
 
     return (
         <div className="container">
@@ -29,6 +31,19 @@ export const HomeScreen = () => {
                                 key={hero.id}
                                 { ...hero } 
                             />
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
+                    {   
+                        herosTeam.map( hero => (
+                            <TeamStats 
+                                key={hero.id}
+                                { ...hero }
+                                />
                         ))
                     }
                 </div>

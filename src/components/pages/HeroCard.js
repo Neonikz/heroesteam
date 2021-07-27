@@ -28,9 +28,9 @@ export const HeroCard = ({
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">
-                    <h5 className="card-title"> {superhero} </h5>
-                    <p className="card-text">{alter_ego}</p>
-                    <p className="card-title">Powerstats:</p>
+                    <h5 className="card-title fw-bolder"> {superhero} </h5>
+                    <p className="card-text fst-italic">{alter_ego}</p>
+                    <p className="card-title fw-bolder">Estadisticas:</p>
                     <p className="card-text">Inteligencia: {intelligence}</p>
                     <p className="card-text">Fuerza: {strength}</p>
                     <p className="card-text">Velocidad: {speed}</p>
