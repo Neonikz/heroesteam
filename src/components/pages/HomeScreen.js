@@ -1,16 +1,20 @@
-import React from 'react';
-import { heroes } from '../../data/heroes';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHeros } from '../../actions/heros';
 import { HeroCard } from './HeroCard';
 
 
 export const HomeScreen = () => {
 
-    let heros = [];
-    for (let i = 0; i < 6; i++) {
-        heros = [...heros, heroes[i] ]
-        
-    }
+    
+    const dispatch = useDispatch();
+    let { herosTeam } = useSelector( state => state.hero );
 
+    useEffect(() => {
+        dispatch(() => getHeros() )
+    }, [dispatch,herosTeam]);
+
+    console.log(herosTeam[0]);
     return (
         <div className="container">
             <div className="row">
@@ -23,9 +27,9 @@ export const HomeScreen = () => {
             <div className="row">
                 <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
                     {
-                        heros.map( hero => (
+                        herosTeam.map( hero => (
                             <HeroCard 
-                                key={hero}
+                                key={hero.id}
                                 { ...hero }
                             />
                         ))

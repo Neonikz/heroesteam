@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import { Redirect, useParams } from 'react-router-dom'
 import { getHeroById } from '../../helpers/getHeroById';
-import { heroImages } from '../../helpers/heroImages';
 // import batman from '../../assets/heroes/dc-batman.jpg'; Esto es para recursos estaticos
 
 

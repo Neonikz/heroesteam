@@ -14,7 +14,7 @@ export const Navbar = () => {
         dispatch({
             type: types.authLogout,
         });
-        
+        localStorage.clear()
         history.replace('/auth/login');   
     }
 

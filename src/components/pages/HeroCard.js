@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteHero } from '../../actions/heros';
 import { heroImages } from '../../helpers/heroImages';
 
 
@@ -7,9 +9,14 @@ export const HeroCard = ({
     id,
     superhero,
     alter_ego,
-    characters
 }) => {
 
+    const dispatch = useDispatch();
+
+    //Funcion para eliminar un heroe
+    const handleDelete = id => {
+        dispatch( deleteHero(id) );
+    }
 
     return (
         <div className="card m-3 overflow-hidden animate__animated animate__flash" style={ { maxWidth:300} }>
@@ -38,6 +45,7 @@ export const HeroCard = ({
                         <button
                             type="button"
                             className="btn btn-danger"
+                            onClick={ () => handleDelete(id) }
                         >
                             Borrar &times;
                         </button>

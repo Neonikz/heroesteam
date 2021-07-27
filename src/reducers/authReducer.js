@@ -9,7 +9,6 @@ export const authReducer = ( state = initialState, action ) => {
     switch( action.type ){
 
         case( types.authLogin ):
-        console.log('hola')
             return{
                 ...state,
                 logged: true

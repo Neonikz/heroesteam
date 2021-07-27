@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addHero } from '../../actions/heros';
 import { heroImages } from '../../helpers/heroImages';
 
 
@@ -9,6 +11,12 @@ export const HeroCardSearch = ({
     alter_ego,
     characters
 }) => {
+    const dispatch = useDispatch();
+
+   //Funcion para añadir heroe al team
+    const handleAdd = (id) => {
+        dispatch( addHero(id) );
+    }
 
 
     return (
@@ -38,6 +46,7 @@ export const HeroCardSearch = ({
                         <button
                             type="button"
                             className="btn btn-success"
+                            onClick={ () => handleAdd(id) }
                         >
                             Agregar!
                         </button>
