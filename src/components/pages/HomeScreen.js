@@ -1,17 +1,18 @@
-import React from 'react';
-import { getHeros } from '../../helpers/getHeros';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHeros } from '../../actions/heros';
 import { HeroCard } from './HeroCard';
+import { TeamStats } from './TeamStats';
 
 
 export const HomeScreen = () => {
 
-    const hero = getHeros(1);
-    console.log(hero);
-    let heroList = [];
-    for (let i; i <= 6; i++) {
-        let heroList = [ ...heroList, getHeros(i) ];
-    }
-    console.log(heroList);
+    const dispatch = useDispatch();
+    let { herosTeam } = useSelector( state => state.hero );
+    useEffect(() => {
+        dispatch(getHeros())
+    }, [dispatch]);
+
 
     return (
         <div className="container">
@@ -23,13 +24,26 @@ export const HomeScreen = () => {
             </div>
 
             <div className="row">
-                <div className="col d-flex flex-wrap mt-5 justify-content-center animate__animated animate__fadeInRight">
-                    {
-                        heroList.map( hero => (
+                <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
+                    {   
+                        herosTeam.map( hero => (
                             <HeroCard 
-                                key={hero}
-                                { ...hero }
+                                key={hero.id}
+                                { ...hero } 
                             />
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
+                    {   
+                        herosTeam.map( hero => (
+                            <TeamStats 
+                                key={hero.id}
+                                { ...hero }
+                                />
                         ))
                     }
                 </div>
