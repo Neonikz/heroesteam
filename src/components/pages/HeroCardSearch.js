@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { addHero } from '../../actions/heros';
 import { heroes } from '../../data/heroes';
 import { heroImages } from '../../helpers/heroImages';
-import { Error } from '../error/Error';
+import { useStats } from '../../hooks/useStats';
+import { Message } from '../message/Message';
 
 
 export const HeroCardSearch = ({ 
@@ -19,13 +21,13 @@ export const HeroCardSearch = ({
     const { herosTeam } = useSelector( state => state.hero );
 
     const [error, setError] = useState(false);
+    const [ setTotalPowerstats ] = useStats([]);
 
    //Funcion para añadir heroe al team
     const handleAdd = (id) => {
 
         // Validamos si hay espacio en el team o si el heroe ya existe
         const heroExist = herosTeam.find(hero => hero.id === id); 
-        console.log(heroExist);
         if(herosTeam.length === 6 || heroExist !== undefined ){
             return setError(true);
         }
@@ -33,6 +35,15 @@ export const HeroCardSearch = ({
 
         //Filtramos el heroe
         const hero = heroes.filter(hero=> hero.id === id)
+        const { superhero, powerstats } = hero[0] 
+        //Mensaje de agregado
+        Swal.fire('Genial!',`${superhero} agregado exitosamente`,'success');
+
+        //Agregamos sus stats al reducer
+        const { intelligence, strength, speed, durability, power, combat } = powerstats
+        setTotalPowerstats( intelligence, strength, speed, durability, power, combat, id );
+
+
         dispatch( addHero(hero[0]) );
     }
 
@@ -47,11 +58,6 @@ export const HeroCardSearch = ({
                     <div className="card-body">
                     <h5 className="card-title"> {superhero} </h5>
                     <p className="card-text">{alter_ego}</p>
-
-                    {/* {
-                        ( alter_ego !== characters )
-                            && <p className="card-text"> {characters} </p>
-                    } */}
                     
                     <div className="d-flex justify-content-between">
                         <Link 
@@ -73,7 +79,7 @@ export const HeroCardSearch = ({
                 </div>
             </div>
             {
-                error && <Error message="Equipo completo o heroe ya existente." /> 
+                error && <Message message="Equipo completo o heroe ya existente." type="danger" /> 
             }
         </div>
     )

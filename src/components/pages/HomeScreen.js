@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHeros } from '../../actions/heros';
+import { Message } from '../message/Message';
 import { HeroCard } from './HeroCard';
-import { TeamStats } from './TeamStats';
+import { TotalStatsScreen } from './TotalStatsScreen';
 
 
 export const HomeScreen = () => {
@@ -11,7 +12,7 @@ export const HomeScreen = () => {
     let { herosTeam } = useSelector( state => state.hero );
     useEffect(() => {
         dispatch(getHeros())
-    }, [dispatch]);
+    }, []);
 
 
     return (
@@ -19,7 +20,7 @@ export const HomeScreen = () => {
             <div className="row">
                 <div className="col d-flex justify-content-center flex-column ">
                     <h1 className="text-center text-white fw-bold">HOME</h1>
-                    <h4 className="text-center text-secondary fw-bold">Por favor, diseñe su equipo...</h4>
+                    <h4 className="text-center text-secondary fw-bold">Diseñe su equipo</h4>
                 </div>
             </div>
 
@@ -37,14 +38,11 @@ export const HomeScreen = () => {
             </div>
 
             <div className="row">
-                <div className="card-columns col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
+                <div className="col d-flex flex-wrap mt-5 align-content-center justify-content-center animate__animated animate__fadeInRight">
                     {   
-                        herosTeam.map( hero => (
-                            <TeamStats 
-                                key={hero.id}
-                                { ...hero }
-                                />
-                        ))
+                        ( herosTeam.length === 0) 
+                            ? <Message message="Tu equipo esta vacio, busca un heroe y agregalo!" type="success" />
+                            : <TotalStatsScreen />
                     }
                 </div>
             </div>

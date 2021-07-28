@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteHero } from '../../actions/heros';
 import { heroImages } from '../../helpers/heroImages';
+import { useDeleteStats } from '../../hooks/useDeleteStats';
 
 
 export const HeroCard = ({ 
@@ -13,12 +14,14 @@ export const HeroCard = ({
 }) => {
 
     const dispatch = useDispatch();
+    const [ deleteHeroStat ] = useDeleteStats();
     const { herosTeam } = useSelector( state => state.hero );
     if(herosTeam.lenght===0) {return null;}
 
 
     //Funcion para eliminar un heroe
     const handleDelete = id => {
+        deleteHeroStat( id ); 
         dispatch( deleteHero(id) );
     }
     const {intelligence, strength, speed, durability, power, combat} = powerstats;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
-import { Error } from '../error/Error';
+import { Message } from '../message/Message';
 import { startLogin } from '../../actions/auth';
 import { useHistory } from 'react-router-dom';
 
@@ -43,7 +43,7 @@ export const LoginScreen = () => {
                             <h2 className="fw-bold text-uppercase">Ingresar</h2>
                             <h4 className="text-center text-uppercase text-secondary fw-lighter">Equipo de Heroes App</h4>
                         
-                        { error && <Error message="Campos invalidos, revise por favor." /> }
+                        { error && <Message message="Campos invalidos, revise por favor." type="danger" /> }
 
                         <form 
                             onSubmit={ handleLogin }
