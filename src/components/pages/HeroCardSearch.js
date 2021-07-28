@@ -1,8 +1,10 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addHero } from '../../actions/heros';
+import { heroes } from '../../data/heroes';
 import { heroImages } from '../../helpers/heroImages';
+import { Error } from '../error/Error';
 
 
 export const HeroCardSearch = ({ 
@@ -11,11 +13,27 @@ export const HeroCardSearch = ({
     alter_ego,
     characters
 }) => {
+
     const dispatch = useDispatch();
+
+    const { herosTeam } = useSelector( state => state.hero );
+
+    const [error, setError] = useState(false);
 
    //Funcion para añadir heroe al team
     const handleAdd = (id) => {
-        dispatch( addHero(id) );
+
+        // Validamos si hay espacio en el team o si el heroe ya existe
+        const heroExist = herosTeam.find(hero => hero.id === id); 
+        console.log(heroExist);
+        if(herosTeam.length === 6 || heroExist !== undefined ){
+            return setError(true);
+        }
+        setError(false);
+
+        //Filtramos el heroe
+        const hero = heroes.filter(hero=> hero.id === id)
+        dispatch( addHero(hero[0]) );
     }
 
 
@@ -54,6 +72,9 @@ export const HeroCardSearch = ({
                     </div>
                 </div>
             </div>
+            {
+                error && <Error message="Equipo completo o heroe ya existente." /> 
+            }
         </div>
     )
 }

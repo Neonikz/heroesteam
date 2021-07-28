@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteHero } from '../../actions/heros';
 import { heroImages } from '../../helpers/heroImages';
@@ -13,6 +13,9 @@ export const HeroCard = ({
 }) => {
 
     const dispatch = useDispatch();
+    const { herosTeam } = useSelector( state => state.hero );
+    if(herosTeam.lenght===0) {return null;}
+
 
     //Funcion para eliminar un heroe
     const handleDelete = id => {
