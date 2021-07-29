@@ -13,8 +13,8 @@ export const LoginScreen = () => {
 
     //Manejo del formulario
     const [ formValues, handleInputChange ] = useForm({
-        email: 'challenge@alkemy.org',
-        password: 'react',
+        email: '',
+        password: '',
     });
     const { email, password } = formValues;
 

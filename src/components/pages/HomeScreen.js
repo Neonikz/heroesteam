@@ -12,7 +12,7 @@ export const HomeScreen = () => {
     let { herosTeam } = useSelector( state => state.hero );
     useEffect(() => {
         dispatch(getHeros())
-    }, []);
+    }, [dispatch]);
 
 
     return (
@@ -21,6 +21,7 @@ export const HomeScreen = () => {
                 <div className="col d-flex justify-content-center flex-column ">
                     <h1 className="text-center text-white fw-bold">HOME</h1>
                     <h4 className="text-center text-secondary fw-bold">Diseñe su equipo</h4>
+                    <h4 className="text-center text-secondary fw-bold">Prueba buscando Batman o Flash...</h4>
                 </div>
             </div>
 

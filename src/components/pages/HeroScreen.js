@@ -62,7 +62,7 @@ export const HeroScreen = ({ history }) => {
                     <li className="list-group-item"> <b> Peso: { weight[1] }</b> </li>
                     <li className="list-group-item"> <b> Color de ojos: { eyeColor }</b> </li>
                     <li className="list-group-item"> <b> Color de pelo: { hairColor }</b> </li>
-                    <li className="list-group-item"> <b> Trabajo: { work.occupation }</b> </li>
+                    <li className="list-group-item"> <b> Trabajo: { work?.occupation }</b> </li>
                     <li className="list-group-item"> <b> Primera aparicion: { first_appearance }</b> </li>
                 </ul>
 

@@ -58,7 +58,7 @@ export const Navbar = () => {
                 <ul className="navbar-nav text-end">
 
                     <button 
-                        className="btn nav-item nav-link"
+                        className="btn nav-item nav-link text-danger"
                         onClick={ handleLogout }
                     >
                         SALIR
